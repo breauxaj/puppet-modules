@@ -1,0 +1,8 @@
+files:
+  '/etc/sample-file':
+    ensure: present
+    owner:  'root'
+    group:  'root'
+    mode:   '0600'
+    content: |
+      I'm just a file with some text in it.

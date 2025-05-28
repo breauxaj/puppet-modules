@@ -1,0 +1,5 @@
+nagios_hostdependency:
+  ahost:
+    host_name:                      'ahost'
+    dependent_host_name:            'bhost'
+    notification_failure_criteria:  'd'

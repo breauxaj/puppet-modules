@@ -1,0 +1,8 @@
+nagios_host:
+  ahost:
+    use:                  'prod-server'
+    host_name:            'ahost'
+    alias:                'ahost'
+    address:              '127.0.0.1'
+    hostgroups:           'ahostgroup'
+    check_command:        'check-host-alive'

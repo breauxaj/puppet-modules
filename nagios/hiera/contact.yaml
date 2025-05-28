@@ -1,0 +1,5 @@
+nagios_contact:
+  noreply:
+    use:   'generic-contact'
+    alias: 'Ima Contact'
+    email: 'noreply@domain.com'

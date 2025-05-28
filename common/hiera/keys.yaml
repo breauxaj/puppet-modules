@@ -1,0 +1,5 @@
+ssh_authorized_keys:
+  'auser@hostname':
+    user: 'username'
+    type: 'ssh-rsa'
+    key:  'NotARealSSHKeyButYouAlreadyKnewTh'

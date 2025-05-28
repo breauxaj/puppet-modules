@@ -1,0 +1,3 @@
+nagios_hostgroup:
+  iamahostgroup:
+    alias: 'I Am A Host Group'

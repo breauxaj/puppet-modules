@@ -1,0 +1,7 @@
+ssh::config:
+  'Banner':
+    value: '/etc/issue.net'
+  'LoginGraceTime':   
+    value: '30'
+  'MaxAuthTries':
+    value: '6'

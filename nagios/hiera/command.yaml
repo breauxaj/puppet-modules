@@ -1,0 +1,3 @@
+nagios_command:
+  check_dig:
+    command_line: '$USER1$/check_dig -H $ARG1$ -l $ARG2$ -A "+tcp"'

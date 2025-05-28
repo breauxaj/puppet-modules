@@ -1,0 +1,4 @@
+groups:
+  sample:
+    ensure: present
+    gid:    5000

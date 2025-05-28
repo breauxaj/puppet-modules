@@ -1,0 +1,9 @@
+mounts:
+  '/media/someshare':
+    ensure:  'mounted'
+    atboot:  'true'
+    device:  'server:/someshare'
+    fstype:  'nfs'
+    options: 'default'
+    require:
+      - File[/media/someshare]

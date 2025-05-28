@@ -1,0 +1,8 @@
+nagios_serviceescalation:
+  'ahost-servesc':
+    host_name:             'ahost'
+    service_description:   'a service esc'
+    first_notification:    '4'
+    last_notification:     '0'
+    notification_interval: '30'
+    contact_groups:        'one-group,two-grouop'

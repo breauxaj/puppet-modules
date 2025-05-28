@@ -1,0 +1,11 @@
+users:
+  auser:
+    ensure:     present
+    comment:    'A User'
+    gid:        5000
+    groups:     'auser'
+    home:       '/home/auser'
+    password:   'NotARealPasswordHash!'
+    shell:      '/bin/bash'
+    managehome: true
+    uid:        5000

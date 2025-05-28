@@ -1,0 +1,11 @@
+nagios_hostextinfo:
+  'ahost':
+    host_name:       'ahost'
+    notes:           'This is an example host'
+    notes_url:       'http://iam.a.url/to/something'
+    icon_image:      'server.png' 
+    icon_image_alt:  'server_image'
+    vrml_image:      'server.png'
+    statusmap_image: 'server.gd2'
+    2d_coords:       '100,250'
+    3d_coords:       '100.0,50.0,75.0'

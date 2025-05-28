@@ -1,0 +1,169 @@
+### Section 1: Global Environment
+<% if @servertokens and ! @servertokens.empty? -%>
+ServerTokens <%= @servertokens %>
+<% else -%>
+ServerTokens OS
+<% end -%>
+
+ServerRoot "/etc/httpd"
+
+Timeout 60
+
+<% if @keepalive and ! @keepalive.empty? -%>
+KeepAlive <%= @keepalive %>
+<% else -%>
+KeepAlive Off
+<% end -%>
+
+<% if @maxkeepaliverequests and ! @maxkeepaliverequests.empty? -%>
+MaxKeepAliveRequests <%= @maxkeepaliverequests %>
+<% else -%>
+MaxKeepAliveRequests 100
+<% end -%>
+
+<% if @keepalivetimeout and ! @keepalivetimeout.empty? -%>
+KeepAliveTimeout <%= @keepalivetimeout %>
+<% else -%>
+KeepAliveTimeout 15
+<% end -%>
+
+<% if @listen and ! @listen.empty? -%>
+<% @listen.each do |l| -%>
+Listen <%= l %>
+<% end -%>
+<% else -%>
+Listen 80
+<% end -%>
+
+Include conf.modules.d/*.conf
+
+IncludeOptional conf.d/*.conf
+
+<% if @extendedstatus and ! @extendedstatus.empty? -%>
+ExtendedStatus <%= @extendedstatus %>
+<% else -%>
+#ExtendedStatus On
+<% end -%>
+
+<% if @user and ! @user.empty? -%>
+User <%= @user %>
+<% else -%>
+User apache
+<% end -%>
+<% if @group and ! @group.empty? -%>
+Group <%= @group %>
+<% else -%>
+Group apache
+<% end -%>
+
+### Section 2: 'Main' server configuration
+<% if @serveradmin and ! @serveradmin.empty? -%>
+ServerAdmin <%= @serveradmin %>
+<% else -%>
+ServerAdmin root@<%= @fqdn %>
+<% end -%>
+
+ServerName <%= @fqdn %>
+
+<% if @usecanonicalname and ! @usecanonicalname.empty? -%>
+UseCanonicalName <%= @usecanonicalname %>
+<% else -%>
+UseCanonicalName Off
+<% end -%>
+
+<% if @documentroot and ! @documentroot.empty? -%>
+DocumentRoot "<%= @documentroot %>"
+<% else -%>
+DocumentRoot "/var/www/html"
+<% end -%>
+
+<Directory />
+    Options FollowSymLinks
+    AllowOverride None
+</Directory>
+
+<% if @documentroot and ! @documentroot.empty? -%>
+<Directory "<%= @documentroot %>">
+<% else -%>
+<Directory "/var/www/html">
+<% end -%>
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+
+<% if @directoryindex and ! @directoryindex.empty? -%>
+DirectoryIndex <% @directoryindex.each do |di| -%><%= di %> <% end -%>
+<% else -%>
+DirectoryIndex index.html index.html.var
+<% end -%>
+
+AccessFileName .htaccess
+
+<Files ~ "^\.ht">
+    Require all denied
+</Files>
+
+<DirectoryMatch "\.(git|hg|svn)">
+    Require all denied
+</DirectoryMatch>
+
+TypesConfig /etc/mime.types
+
+<IfModule mod_mime_magic.c>
+    MIMEMagicFile conf/magic
+</IfModule>
+
+HostnameLookups Off
+
+ErrorLog "|/usr/sbin/rotatelogs /var/log/httpd/error_log_%Y%m%d 86400"
+
+LogLevel warn
+
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b" common
+
+LogFormat "%V %h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" vcombined
+LogFormat "%V %h %l %u %t \"%r\" %>s %b" vcommon
+
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" \"%{X-Forwarded-For}i\"" xcombined
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{X-Forwarded-For}i\"" xcommon
+
+LogFormat "%{Referer}i -> %U" referer
+LogFormat "%{User-agent}i" agent
+
+<% if @logformat and ! @logformat.empty? -%>
+<% @logformat.each do |lf| -%>
+LogFormat <%= lf %>
+<% end -%>
+<% end -%>
+
+CustomLog "|/usr/sbin/rotatelogs /var/log/httpd/access_log_%Y%m%d 86400" combined
+
+<% if @serversignature and ! @serversignature.empty? -%>
+ServerSignature <%= @serversignature %>
+<% else -%>
+ServerSignature Off
+<% end -%>
+
+AddDefaultCharset UTF-8
+
+AddType application/x-compress .Z
+AddType application/x-gzip .gz .tgz
+
+AddType application/x-x509-ca-cert .crt
+AddType application/x-pkcs7-crl    .crl
+
+AddType video/ogg  .ogv
+AddType video/mp4  .mp4
+AddType video/webm .webm
+
+TraceEnable off
+
+<IfModule reqtimeout_module>
+RequestReadTimeout header=10-20,minrate=500
+RequestReadTimeout body=10,minrate=500
+</IfModule>
+
+### Section 3: Virtual Hosts
+IncludeOptional vhost.d/*.conf

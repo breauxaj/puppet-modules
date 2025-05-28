@@ -1,0 +1,4 @@
+hosts:
+  "%{::fqdn}":
+    ip:           "%{::ipaddress}"
+    host_aliases: "%{::hostname}"

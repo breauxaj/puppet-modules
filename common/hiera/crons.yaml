@@ -1,0 +1,11 @@
+crons:
+  run-something:
+    command: '/usr/local/sbin/run-something.sh  > /dev/null 2>&1'
+    user:    'root'
+    minute:  '0'
+    hour:    '0'
+  run-something-else:
+    command: '/usr/local/sbin/run-something-else.sh  > /dev/null 2>&1'
+    user:    'root'
+    minute:  '0'
+    hour:    '2'

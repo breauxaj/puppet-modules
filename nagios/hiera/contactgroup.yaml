@@ -1,0 +1,4 @@
+nagios_contactgroup:
+  support:
+    alias:   'Support Group'
+    members: 'noreply'

@@ -1,0 +1,8 @@
+nagios_serviceextinfo:
+  'ahost-svc-ext-info':
+    host_name:           'ahost'
+    service_description: 'A Service Description'
+    notes:               'I am thrilling notes about this service'
+    notes_url:           'http://a.url/to/something'
+    icon_image:          'server.png'
+    icon_image_alt:      'cool server image'

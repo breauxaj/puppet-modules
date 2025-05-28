@@ -1,0 +1,7 @@
+nagios_hostescalation:
+  'ahost':
+    host_name:               'ahost'
+    first_notification_time: '60'
+    last_notification_time:  '120'
+    notification_interval:   '60'
+    contact_groups:          'acontactgroup'

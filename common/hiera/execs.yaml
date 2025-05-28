@@ -1,0 +1,5 @@
+execs:
+  'run-ls':
+    command:     'ls -al'
+    cwd:         '/usr/bin'
+    path:        '/bin:/usr/bin'

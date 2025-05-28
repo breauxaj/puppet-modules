@@ -1,0 +1,5 @@
+# MANAGED BY PUPPET!
+if [ -d /usr/local/ant ]; then
+  export ANT_HOME=/usr/local/ant
+  export PATH=${ANT_HOME}/bin:${PATH}
+fi

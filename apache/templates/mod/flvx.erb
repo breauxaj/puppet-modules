@@ -1,0 +1,7 @@
+# MANAGED BY PUPPET!
+LoadModule flvx_module modules/mod_flvx.so
+AddHandler flv-stream .flv
+
+<IfModule mime_module>
+AddType video/x-flv .flv
+</IfModule>

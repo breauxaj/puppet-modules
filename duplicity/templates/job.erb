@@ -1,0 +1,7 @@
+#!/bin/sh
+DUP=/usr/bin/duplicity
+SRC=<%= source %>
+DST=<%= destination %>
+OPTIONS=<%= options %>
+
+${DUP} ${OPTIONS} ${SRC} ${DST}

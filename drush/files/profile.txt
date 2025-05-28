@@ -1,0 +1,5 @@
+# MANAGED BY PUPPET!
+if [ -d /usr/local/drush ]; then
+  export DRUSH_HOME=/usr/local/drush
+  export PATH=${DRUSH_HOME}:${PATH}
+fi

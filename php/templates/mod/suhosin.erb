@@ -1,0 +1,534 @@
+extension = suhosin.so
+
+[suhosin]
+
+; -----------------------------------------------------------------------------
+; Logging Options
+
+<% if log_syslog and ! log_syslog.empty? -%>
+suhosin.log.syslog = <%= log_syslog %>
+<% else -%>
+;suhosin.log.syslog = 
+<% end -%>
+
+<% if log_syslog_facility and ! log_syslog_facility.empty? -%>
+suhosin.log.syslog.facility = <%= log_syslog_facility %>
+<% else -%>
+;suhosin.log.syslog.facility = 
+<% end -%>
+
+<% if log_syslog_priority and ! log_syslog_priority.empty? -%>
+suhosin.log.syslog.priority = <%= log_syslog_priority %>
+<% else -%>
+;suhosin.log.syslog.priority = 
+<% end -%>
+
+<% if log_sapi and ! log_sapi.empty? -%>
+suhosin.log.sapi = <%= log_sapi %>
+<% else -%>
+;suhosin.log.sapi = 
+<% end -%>
+
+<% if log_script and ! log_script.empty? -%>
+suhosin.log.script = <%= log_script %>
+<% else -%>
+;suhosin.log.script = 
+<% end -%>
+
+<% if log_phpscript and log_phpscript.empty? -%>
+suhosin.log.phpscript = <%= log_phpscript %>
+<% else -%>
+;suhosin.log.phpscript = 0
+<% end -%>
+
+<% if log_script_name and ! log_script_name.empty? -%>
+suhosin.log.script.name = <%= log_script_name %>
+<% else -%>
+;suhosin.log.script.name = 
+<% end -%>
+
+<% if log_phpscript_name and ! log_phpscript_name.empty? -%>
+suhosin.log.phpscript.name = <%= log_phpscript_name %>
+<% else -%>
+;suhosin.log.phpscript.name = 
+<% end -%>
+
+<% if log_phpscript_is_safe and ! log_phpscript_is_safe.empty? -%>
+suhosin.log.phpscript.is_safe = <%= log_phpscript_is_safe %>
+<% else -%>
+;suhosin.log.phpscript.is_safe = Off
+<% end -%>
+
+<% if log_use_x_forwarded_for and ! log_use_x_forwarded_for.empty? -%>
+suhosin.log.use-x-forwarded-for = <%= log_use_x_forwarded_for %>
+<% else -%>
+;suhosin.log.use-x-forwarded-for = Off
+<% end -%>
+
+; -----------------------------------------------------------------------------
+; Executor Options
+
+<% if executor_max_depth and ! executor_max_depth.empty? -%>
+suhosin.executor.max_depth = <%= executor_max_depth %>
+<% else -%>
+;suhosin.executor.max_depth = 0
+<% end -%>
+
+<% if executor_include_max_traversal and executor_include_max_traversal.empty? -%>
+suhosin.executor.include.max_traversal = <%= executor_include_max_traversal %>
+<% else -%>
+;suhosin.executor.include.max_traversal = 0
+<% end -%>
+
+<% if executor_include_whitelist and ! executor_include_whitelist.empty? -%>
+suhosin.executor.include.whitelist = <%= executor_include_whitelist.join(",") %>
+<% else -%>
+;suhosin.executor.include.whitelist = 
+<% end -%>
+
+<% if executor_include_blacklist and ! executor_include_blacklist.empty? -%>
+suhosin.executor.include.blacklist = <%= executor_include_blacklist.join(",") %>
+<% else -%>
+;suhosin.executor.include.blacklist = 
+<% end -%>
+
+<% if executor_include_allow_writable_files and ! executor_include_allow_writable_files.empty? -%>
+suhosin.executor.include.allow_writable_files = <%= executor_include_allow_writable_files %>
+<% else -%>
+;suhosin.executor.include.allow_writable_files = On
+<% end -%>
+
+<% if executor_func_whitelist and ! executor_func_whitelist.empty? -%>
+suhosin.executor.func.whitelist = <%= executor_func_whitelist.join(",") %>
+<% else -%>
+;suhosin.executor.func.whitelist = 
+<% end -%>
+
+<% if executor_func_blacklist and ! executor_func_blacklist.empty? -%>
+suhosin.executor.func.blacklist = <%= executor_func_blacklist.join(",") %>
+<% else -%>
+;suhosin.executor.func.blacklist = 
+<% end -%>
+
+<% if executor_eval_whitelist and ! executor_eval_whitelist.empty? -%>
+suhosin.executor.eval.whitelist = <%= executor_eval_whitelist.join(",") %>
+<% else -%>
+;suhosin.executor.eval.whitelist = 
+<% end -%>
+
+<% if executor_eval_blacklist and ! executor_eval_blacklist.empty? -%>
+suhosin.executor.eval.blacklist = <%= executor_eval_blacklist.join(",") %>
+<% else -%>
+;suhosin.executor.eval.blacklist = 
+<% end -%>
+
+<% if executor_disable_eval and ! executor_disable_eval.empty? -%>
+suhosin.executor.disable_eval = <%= executor_disable_eval %>
+<% else -%>
+;suhosin.executor.disable_eval = Off
+<% end -%>
+
+<% if executor_disable_emodifier and ! executor_disable_emodifier.empty? -%>
+suhosin.executor.disable_emodifier = <%= executor_disable_emodifier %>
+<% else -%>
+;suhosin.executor.disable_emodifier = Off
+<% end -%>
+
+; This flag reactivates symlink() when open_basedir is used, which is disabled
+; by default in Suhosin >= 0.9.6. Allowing symlink() while open_basedir is used
+; is actually a security risk.
+<% if executor_allow_symlink and ! executor_allow_symlink.empty? -%>
+suhosin.executor.allow_symlink = <%= executor_allow_symlink %>
+<% else -%>
+;suhosin.executor.allow_symlink = Off
+<% end -%>
+
+; -----------------------------------------------------------------------------
+; Misc Options
+
+<% if simulation and ! simulation.empty? -%>
+suhosin.simulation = <%= simulation %>
+<% else -%>
+;suhosin.simulation = Off
+<% end -%>
+
+<% if apc_bug_workaround and ! apc_bug_workaround.empty? -%>
+suhosin.apc_bug_workaround = <%= apc_bug_workaround %>
+<% else -%>
+;suhosin.apc_bug_workaround = Off
+<% end -%>
+
+<% if sql_bailout_on_error and ! sql_bailout_on_error.empty? -%>
+suhosin.sql.bailout_on_error = <%= sql_bailout_on_error %>
+<% else -%>
+;suhosin.sql.bailout_on_error = Off
+<% end -%>
+
+<% if sql_user_prefix and ! sql_user_prefix.empty? -%>
+suhosin.sql.user_prefix = <%= sql_user_prefix %>
+<% else -%>
+;suhosin.sql.user_prefix = 
+<% end -%>
+
+<% if sql_user_postfix and ! sql_user_postfix.empty? -%>
+suhosin.sql.user_postfix = <%= sql_user_postfix %>
+<% else -%>
+;suhosin.sql.user_postfix = 
+<% end -%>
+
+<% if multiheader and ! multiheader.empty? -%>
+suhosin.multiheader = <%= multiheader %>
+<% else -%>
+;suhosin.multiheader = Off
+<% end -%>
+
+suhosin.mail.protect = 1
+
+<% if memory_limit and ! memory_limit.empty? -%>
+suhosin.memory_limit = <%= memory_limit %>
+<% else -%>
+;suhosin.memory_limit = 0
+<% end -%>
+
+; -----------------------------------------------------------------------------
+; Transparent Encryption Options
+
+<% if session_encrypt and ! session_encrypt.empty? -%>
+suhosin.session.encrypt = <%= session_encrypt %>
+<% else -%>
+;suhosin.session.encrypt = On
+<% end -%>
+
+<% if session_cryptkey and ! session_cryptkey.empty? -%>
+suhosin.session.cryptkey = <%= session_cryptkey %>
+<% else -%>
+;suhosin.session.cryptkey = 
+<% end -%>
+
+<% if session_cryptua and ! session_cryptua.empty? -%>
+suhosin.session.cryptua = <%= session_cryptua.empty? %>
+<% else -%>
+;suhosin.session.cryptua = On
+<% end -%>
+
+<% if session_cryptdocroot and ! session_cryptdocroot.empty? -%>
+suhosin.session.cryptdocroot = <%= session_cryptdocroot %>
+<% else -%>
+;suhosin.session.cryptdocroot = On
+<% end -%>
+
+<% if session_cryptaddr and ! session_cryptaddr.empty? -%>
+suhosin.session_cryptaddr = <%= session_cryptaddr %>
+<% else -%>
+;suhosin.session.cryptraddr = 0
+<% end -%>
+
+<% if session_checkraddr and ! session_checkraddr.empty? -%>
+suhosin.session.checkraddr = <%= session_checkraddr %>
+<% else -%>
+;suhosin.session.checkraddr = 0
+<% end -%>
+
+<% if cookie_encrypt and ! cookie_encrypt.empty? -%>
+suhosin.cookie.encrypt = <%= cookie_encrypt %>
+<% else -%>
+;suhosin.cookie.encrypt = 0
+<% end -%>
+
+<% if cookie_cryptkey and ! cookie_cryptkey.empty? -%>
+suhosin.cookie.cryptkey = <%= cookie_cryptkey %>
+<% else -%>
+;suhosin.cookie.cryptkey = 
+<% end -%>
+
+<% if cookie_cryptua and ! cookie_cryptua.empty? -%>
+suhosin.cookie.cryptua = <%= cookie_cryptua %>
+<% else -%>
+;suhosin.cookie.cryptua = On
+<% end -%>
+
+<% if cookie_cryptdocroot and ! cookie_cryptdocroot.empty? -%>
+suhosin.cookie.cryptdocroot = <%= cookie_cryptdocroot %>
+<% else -%>
+;suhosin.cookie.cryptdocroot = On
+<% end -%>
+
+<% if cookie_cryptaddr and ! cookie_cryptaddr.empty? -%>
+suhosin.cookie.cryptaddr = <%= cookie_cryptaddr %>
+<% else -%>
+;suhosin.cookie.cryptraddr = 0
+<% end -%>
+
+<% if cookie_checkraddr and ! cookie_checkraddr.empty? -%>
+suhosin.cookie.checkraddr = <%= cookie_checkraddr %>
+<% else -%>
+;suhosin.cookie.checkraddr = 0
+<% end -%>
+
+<% if cookie_cryptlist and ! cookie_cryptlist.empty? -%>
+suhosin.cookie.cryptlist = <%= cookie_cryptlist %>
+<% else -%>
+;suhosin.cookie.cryptlist = 
+<% end -%>
+
+<% if cookie_plainlist and ! cookie_plainlist.empty? -%>
+suhosin.cookie.plainlist = <%= cookie_plainlist %>
+<% else -%>
+;suhosin.cookie.plainlist = 
+<% end -%>
+
+; -----------------------------------------------------------------------------
+; Filtering Options
+
+<% if filter_action and ! filter_action.empty? -%>
+suhosin.filter.action = <%= filter_action %>
+<% else -%>
+;suhosin.filter.action = 
+<% end -%>
+
+<% if cookie_max_array_depth and ! cookie_max_array_depth.empty? -%>
+suhosin.cookie.max_array_depth = <%= cookie_max_array_depth %>
+<% else -%>
+;suhosin.cookie.max_array_depth = 50
+<% end -%>
+
+; Defines the maximum length of array indices for variables registered through
+; the COOKIE.
+<% if cookie_max_array_index_length and ! cookie_max_array_index_length.empty -%>
+suhosin.cookie.max_array_index_length = <%= cookie_max_array_index_length %>
+<% else -%>
+;suhosin.cookie.max_array_index_length = 64
+<% end -%>
+
+<% if cookie_max_name_length and ! cookie_max_name_length.empty? -%>
+suhosin.cookie.max_name_length = <%= cookie_max_name_length %>
+<% else -%>
+;suhosin.cookie.max_name_length = 64
+<% end -%>
+
+<% if cookie_max_totalname_length and ! cookie_max_totalname_length.empty? -%>
+suhosin.cookie.max_totalname_length = <%= cookie_max_totalname_length %>
+<% else -%>
+;suhosin.cookie.max_totalname_length = 256
+<% end -%>
+
+<% if cookie_max_value_length and ! cookie_max_value_length.empty? -%>
+suhosin.cookie.max_value_length = <%= cookie_max_value_length %>
+<% else -%>
+;suhosin.cookie.max_value_length = 10000
+<% end -%>
+
+<% if cookie_max_vars and ! cookie_max_vars.empty? -%>
+suhosin.cookie.max_vars = <%= cookie_max_vars %>
+<% else -%>
+;suhosin.cookie.max_vars = 100
+<% end -%>
+
+<% if cookie_disallow_nul and ! cookie_disallow_nul.empty? -%>
+suhosin.cookie.disallow_nul = <%= cookie_disallow_nul %>
+<% else -%>
+;suhosin.cookie.disallow_nul = 1
+<% end -%>
+
+<% if get_max_array_depth and ! get_max_array_depth.empty? -%>
+suhosin.get.max_array_depth = <%= get_max_array_depth %>
+<% else -%>
+;suhosin.get.max_array_depth = 50
+<% end -%>
+
+<% if get_max_array_index_length and ! get_max_array_index_length.empty? -%>
+suhosin.get.max_array_index_length = <%= get_max_array_index_length %>
+<% else -%>
+;suhosin.get.max_array_index_length = 64
+<% end -%>
+
+<% if get_max_name_length and ! get_max_name_length.empty? -%>
+suhosin.get.max_name_length = <%= get_max_name_length %>
+<% else -%>
+;suhosin.get.max_name_length = 64
+<% end -%>
+
+; Defines the maximum length of the total variable name when registered through
+; the URL. For array variables this includes all indices.
+<% if get_max_totalname_length and ! get_max_totalname_length.empty? -%>
+suhosin.get.max_totalname_length = <%= get_max_totalname_length %>
+<% else -%>
+;suhosin.get.max_totalname_length = 256
+<% end -%>
+
+<% if get_max_value_length and ! get_max_value_length.empty? -%>
+suhosin.get.max_value_length = <%= get_max_value_length %>
+<% else -%>
+;suhosin.get.max_value_length = 512
+<% end -%>
+
+<% if get_max_vars and ! get_max_vars.empty? -%>
+suhosin.get.max_vars = <%= get_max_vars %>
+<% else -%>
+;suhosin.get.max_vars = 100
+<% end -%>
+
+<% if get_disallow_nul and ! get_disallow_nul.empty? -%>
+suhosin.get.disallow_nul = <%= get_disallow_nul %>
+<% else -%>
+;suhosin.get.disallow_nul = 1
+<% end -%>
+
+<% if post_max_array_depth and ! post_max_array_depth.empty? -%>
+suhosin.post.max_array_depth = <%= post_max_array_depth %>
+<% else -%>
+;suhosin.post.max_array_depth = 50
+<% end -%>
+
+<% if post_max_array_index_length and ! post_max_array_index_length.empty? -%>
+suhosin.post.max_array_index_length = <%= post_max_array_index_length %>
+<% else -%>
+;suhosin.post.max_array_index_length = 64
+<% end -%>
+
+<% if post_max_name_length and ! post_max_name_length.empty? -%>
+suhosin.post.max_name_length = <%= post_max_name_length %>
+<% else -%>
+;suhosin.post.max_name_length = 64
+<% end -%>
+
+<% if post_max_totalname_length and ! post_max_totalname_length.empty? -%>
+suhosin.post.max_totalname_length = <%= post_max_totalname_length %>
+<% else -%>
+;suhosin.post.max_totalname_length = 256
+<% end -%>
+
+<% if post_max_value_length and ! post_max_value_length.empty? -%>
+suhosin.post.max_value_length = <%= post_max_value_length %>
+<% else -%>
+;suhosin.post.max_value_length = 1000000
+<% end -%>
+
+<% if post_max_vars and ! post_max_vars.empty? -%>
+suhosin.post.max_vars = <%= post_max_vars %>
+<% else -%>
+;suhosin.post.max_vars = 1000
+<% end -%>
+
+<% if post_disallow_nul and ! post_disallow_nul.empty? -%>
+suhosin.post.disallow_nul = <%= post_disallow_nul %>
+<% else -%>
+;suhosin.post.disallow_nul = 1
+<% end -%>
+
+<% if request_max_array_depth and ! request_max_array_depth.empty? -%>
+suhosin.request.max_array_depth = <%= request_max_array_depth %>
+<% else -%>
+;suhosin.request.max_array_depth = 50
+<% end -%>
+
+<% if request_max_array_index_length and ! request_max_array_index_length.empty? -%>
+suhosin.request.max_array_index_length = <%= request_max_array_index_length %>
+<% else -%>
+;suhosin.request.max_array_index_length = 64
+<% end -%>
+
+<% if request_max_totalname_length and ! request_max_totalname_length.empty? -%>
+suhosin.request.max_totalname_length = <%= request_max_totalname_length %>
+<% else -%>
+;suhosin.request.max_totalname_length = 256
+<% end -%>
+
+<% if request_max_value_length and ! request_max_value_length.empty? -%>
+suhosin.request.max_value_length = <%= request_max_value_length %>
+<% else -%>
+;suhosin.request.max_value_length = 1000000
+<% end -%>
+
+; Defines the maximum number of variables that may be registered through the
+; COOKIE, the URL or through a POST request. This setting is also an upper
+; limit for the variable origin specific configuration directives.
+<% if request_max_vars and ! request_max_vars.empty? -%>
+suhosin.request.max_vars = <%= request_max_vars %>
+<% else -%>
+;suhosin.request.max_vars = 1000
+<% end -%>
+
+<% if request_max_varname_length and ! request_max_varname_length.empty? -%>
+suhosin.request.max_varname_length = <%= request_max_varname_length %>
+<% else -%>
+;suhosin.request.max_varname_length = 64
+<% end -%>
+
+<% if request_disallow_nul and ! request_disallow_nul.empty? -%>
+suhosin.request.disallow_nul = <%= request_disallow_nul %>
+<% else -%>
+;suhosin.request.disallow_nul = 1
+<% end -%>
+
+<% if server_encode and ! server_encode.empty? -%>
+suhosin.server.encode = <%= server_encode %>
+<% else -%>
+;suhosin.server.encode = 1
+<% end -%>
+
+<% if server_strip and ! server_strip.empty? -%>
+suhosin.server.strip = <%= server_strip %>
+<% else -%>
+;suhosin.server.strip = 1
+<% end -%>
+
+<% if upload_max_uploads and ! upload_max_uploads.empty? -%>
+suhosin.upload.max_uploads = <%= upload_max_uploads %>
+<% else -%>
+;suhosin.upload.max_uploads = 25
+<% end -%>
+
+<% if upload_disallow_elf and ! upload_disallow_elf.empty? -%>
+suhosin.upload.disallow_elf = <%= upload_disallow_elf %>
+<% else -%>
+;suhosin.upload.disallow_elf = 1
+<% end -%>
+
+<% if upload_disallow_binary and ! upload_disallow_binary.empty? -%>
+suhosin.upload.disallow_binary = <%= upload_disallow_binary %>
+<% else -%>
+;suhosin.upload.disallow_binary = 0
+<% end -%>
+
+<% if upload_remove_binary and ! upload_remove_binary.empty? -%>
+suhosin.upload.remove_binary = <%= upload_remove_binary %>
+<% else -%>
+;suhosin.upload.remove_binary = 0
+<% end -%>
+
+<% if upload_verification_script and ! upload_verification_script.empty? -%>
+suhosin.upload.verification_script = <%= upload_verification_script %>
+<% else -%>
+;suhosin.upload.verification_script = 
+<% end -%>
+
+<% if session_max_id_length and ! session_max_id_length.empty? -%>
+suhosin.session.max_id_length = <%= session_max_id_length %>
+<% else -%>
+;suhosin.session.max_id_length = 128
+<% end -%>
+
+<% if coredump and ! coredump.empty? -%>
+suhosin.coredump = <%= coredump %>
+<% else -%>
+;suhosin.coredump = Off
+<% end -%>
+
+<% if protectkey and ! protectkey.empty? -%>
+suhosin.protectkey = <%= protectkey %>
+<% else -%>
+;suhosin.protectkey = 1
+<% end -%>
+
+<% if stealth and ! stealth.empty? -%>
+suhosin.stealth = <%= stealth %>
+<% else -%>
+;suhosin.stealth = 1
+<% end -%>
+
+<% if perdir and ! perdir.empty? -%>
+suhosin.perdir = <%= perdir %>
+<% else -%>
+;suhosin.perdir = "0"
+<% end -%>

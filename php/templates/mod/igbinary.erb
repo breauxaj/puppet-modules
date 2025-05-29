@@ -1,0 +1,13 @@
+; Enable igbinary extension module
+extension=igbinary.so
+
+; Enable or disable compacting of duplicate strings
+; The default is On.
+;igbinary.compact_strings=On
+
+; Use igbinary as session serializer
+<% if serialize_handler and ! serialize_handler.empty? -%>
+session.serialize_handler=igbinary
+<% else -%>
+;session.serialize_handler=igbinary
+<% end -%>

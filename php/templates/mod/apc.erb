@@ -1,0 +1,186 @@
+; Enable apc extension module
+extension = apc.so
+
+; Options for the APC module version >= 3.1.3
+; See http://www.php.net/manual/en/apc.configuration.php
+
+; This can be set to 0 to disable APC.
+<% if enabled and ! enabled.empty? -%>
+apc.enabled=<%= enabled %>
+<% else -%>
+apc.enabled=1
+<% end -%>
+; The number of shared memory segments to allocate for the compiler cache.
+<% if shm_segments and ! shm_segments.empty? -%>
+apc.shm_segments=<%= shm_segments %>
+<% else -%>
+apc.shm_segments=1
+<% end -%>
+; The size of each shared memory segment, with M/G suffix
+<% if shm_size and ! shm_size.empty? -%>
+apc.shm_size=<%= shm_size %>
+<% else -%>
+apc.shm_size=64M
+<% end -%>
+; A "hint" about the number of distinct source files that will be included or 
+; requested on your web server. Set to zero or omit if you are not sure;
+<% if num_files_hint and ! num_files_hint.empty? -%>
+apc.num_files_hint=<%= num_files_hint %>
+<% else -%>
+apc.num_files_hint=1024
+<% end -%>
+; Just like num_files_hint, a "hint" about the number of distinct user cache
+; variables to store.  Set to zero or omit if you are not sure;
+<% if user_entries_hint and ! user_entries_hint.empty? -%>
+apc.user_entries_hint=<%= user_entries_hint %>
+<% else -%>
+apc.user_entries_hint=4096
+<% end -%>
+; The number of seconds a cache entry is allowed to idle in a slot in case this
+; cache entry slot is needed by another entry.
+<% if ttl and ! ttl.empty? -%>
+apc.ttl=<%= ttl %>
+<% else -%>
+apc.ttl=7200
+<% end -%>
+; use the SAPI request start time for TTL
+<% if use_request_time and ! use_request_time.empty? -%>
+apc.use_request_time=<%= use_request_time %>
+<% else -%>
+apc.use_request_time=1
+<% end -%>
+; The number of seconds a user cache entry is allowed to idle in a slot in case
+; this cache entry slot is needed by another entry.
+<% if user_ttl and ! user_ttl.empty? -%>
+apc.user_ttl=<%= user_ttl %>
+<% else -%>
+apc.user_ttl=7200
+<% end -%>
+; The number of seconds that a cache entry may remain on the garbage-collection list. 
+<% if gc_ttl and ! gc_ttl.empty? -%>
+apc.gc_ttl=<%= gc_ttl %>
+<% else -%>
+apc.gc_ttl=3600
+<% end -%>
+; On by default, but can be set to off and used in conjunction with positive
+; apc.filters so that files are only cached if matched by a positive filter.
+<% if cache_by_default and ! cache_by_default.empty? -%>
+apc.cache_by_default=<%= cache_by_default %>
+<% else -%>
+apc.cache_by_default=1
+<% end -%>
+; A comma-separated list of POSIX extended regular expressions.
+apc.filters
+; The mktemp-style file_mask to pass to the mmap module
+<% if mmap_file_mask and ! mmap_file_mask.empty? -%>
+apc.mmap_file_mask=<%= mmap_file_mask %>
+<% else -%>
+apc.mmap_file_mask=/tmp/apc.XXXXXX
+<% end -%>
+; This file_update_protection setting puts a delay on caching brand new files.
+<% if file_update_protection and ! file_update_protection.empty? -%>
+apc.file_update_protection=<%= file_update_protection %>
+<% else -%>
+apc.file_update_protection=2
+<% end -%>
+; Setting this enables APC for the CLI version of PHP (Mostly for testing and debugging).
+<% if enable_cli and ! enable_cli.empty? -%>
+apc.enable_cli=<%= enable_cli %>
+<% else -%>
+apc.enable_cli=0
+<% end -%>
+; Prevents large files from being cached
+<% if max_file_size and ! max_file_size.empty? -%>
+apc.max_file_size=<%= max_file_size %>
+<% else -%>
+apc.max_file_size=1M
+<% end -%>
+; Whether to stat the main script file and the fullpath includes.
+<% if stat and ! stat.empty? -%>
+apc.stat=<%= stat %>
+<% else -%>
+apc.stat=1
+<% end -%>
+; Vertification with ctime will avoid problems caused by programs such as svn or rsync by making 
+; sure inodes have not changed since the last stat. APC will normally only check mtime.
+<% if stat_ctime and ! stat_ctime.empty? -%>
+apc.stat_ctime=<%= stat_ctime %>
+<% else -%>
+apc.stat_ctime=0
+<% end -%>
+; Whether to canonicalize paths in stat=0 mode or fall back to stat behaviour
+<% if canonicalize and ! canonicalize.empty? -%>
+apc.canonicalize=<%= canonicalize %>
+<% else -%>
+apc.canonicalize=0
+<% end -%>
+; With write_lock enabled, only one process at a time will try to compile an 
+; uncached script while the other processes will run uncached
+<% if write_lock and ! write_lock.empty? -%>
+apc.write_lock=<%= write_lock %>
+<% else -%>
+apc.write_lock=1
+<% end -%>
+; Logs any scripts that were automatically excluded from being cached due to early/late binding issues.
+<% if report_autofilter and ! report_autofilter.empty? -%>
+apc.report_autofilter=<%= report_autofilter %>
+<% else -%>
+apc.report_autofilter=0
+<% end -%>
+; RFC1867 File Upload Progress hook handler
+<% if rfc1867 and ! rfc1867.empty? -%>
+apc.rfc1867=<%= rfc1867 %>
+<% else -%>
+apc.rfc1867=0
+<% end -%>
+<% if rfc1867_prefix and ! rfc1867_prefix.empty? -%>
+apc.rfc1867_prefix=<%= rfc1867_prefix %>
+<% else -%>
+apc.rfc1867_prefix=upload_
+<% end -%>
+<% if rfc1867_name and ! rfc1867_name.empty? -%>
+apc.rfc1867_name=<%= rfc1867_name %>
+<% else -%>
+apc.rfc1867_name=APC_UPLOAD_PROGRESS
+<% end -%>
+<% if rfc1867_freq and ! rfc1867_freq.empty? -%>
+apc.rfc1867_freq=<%= rfc1867_freq %>
+<% else -%>
+apc.rfc1867_freq=0
+<% end -%>
+<% if rfc1867_ttl and rfc1867_ttl.empty? -%>
+apc.rfc1867_ttl=<%= rfc1867_ttl %>
+<% else -%>
+apc.rfc1867_ttl=3600
+<% end -%>
+; Optimize include_once and require_once calls and avoid the expensive system calls used.
+<% if include_once_override and include_once_override.empty? -%>
+apc.include_once_override=<%= include_once_override %>
+<% else -%>
+apc.include_once_override=0
+<% end -%>
+<% if lazy_classes and ! lazy_classes.empty? -%>
+apc.lazy_classes=<%= lazy_classes %>
+<% else -%>
+apc.lazy_classes=0
+<% end -%>
+<% if lazy_functions and ! lazy_functions.empty? -%>
+apc.lazy_functions=<%= lazy_functions %>
+<% else -%>
+apc.lazy_functions=0
+<% end -%>
+; Enables APC handling of signals, such as SIGSEGV, that write core files when signaled. 
+; APC will attempt to unmap the shared memory segment in order to exclude it from the core file
+<% if coredump_unmap and ! coredump_unmap.empty? -%>
+apc.coredump_unmap=<%= coredump_unmap %>
+<% else -%>
+apc.coredump_unmap=0
+<% end -%>
+; Records a md5 hash of files. 
+<% if file_md5 and ! file_md5.empty? %>
+apc.file_md5=<%= file_md5 %>
+<% else -%>
+apc.file_md5=0
+<% end -%>
+; not documented
+apc.preload_path

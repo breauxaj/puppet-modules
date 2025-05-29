@@ -1,0 +1,34 @@
+# MANAGED BY PUPPET!
+[global]
+<% if global_tds_version and ! global_tds_version.empty? -%>
+tds version = <%= global_tds_version %>
+<% end -%>
+
+<% if global_dump_file and ! global_dump_file.empty? -%>
+dump file = <%= global_dump_file %>
+<% end -%>
+<% if global_debug_flags and ! global_debug_flags.empty? -%>
+debug flags = <%= global_debug_flags %>
+<% end -%>
+
+<% if global_timeout and ! global_timeout.empty? -%>
+timeout = <%= global_timeout %>
+<% end -%>
+<% if global_connect_timeout and ! global_connect_timeout.empty? -%>
+connect timeout = <%= global_connect_timeout %>
+<% end -%>
+
+<% if global_text_size and ! global_text_size.empty? -%>
+text size = <%= global_text_size %>
+<% else -%>
+text size = 64512
+<% end -%>
+
+<% if servers and ! servers.empty? -%>
+<% servers.sort_by {|key, value| key}.each do |key, value| -%>
+[<%= key %>]
+host = <%= value['host'] %>
+port = <%= value['port'] %>
+tds version = <%= value['tds_version'] %>
+<% end -%>
+<% end -%>

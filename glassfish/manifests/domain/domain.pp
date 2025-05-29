@@ -1,0 +1,5 @@
+define glassfish::domain (
+
+) {
+
+}

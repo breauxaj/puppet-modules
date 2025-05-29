@@ -1,0 +1,5 @@
+# MANAGED BY PUPPET!
+if [ -d /usr/local/gatling ]; then
+  export GATLING_HOME=/usr/local/gatling
+  export PATH=${GATLING_HOME}/bin:${PATH}
+fi

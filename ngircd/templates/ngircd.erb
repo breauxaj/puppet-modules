@@ -1,0 +1,135 @@
+# MANAGED BY PUPPET!
+[Global]
+<% if global_name and ! global_name.empty? -%>
+Name = <%= global_name %>
+<% end -%>
+<% if global_info and ! global_info.empty? -%>
+Info = <%= global_info %>
+<% end -%>
+<% if global_password and ! global_password.empty? -%>
+Password = <%= global_password %>
+<% end -%>
+<% if global_admininfo1 and ! global_admininfo1.empty? -%>
+AdminInfo1 = <%= global_admininfo1 %>
+<% end -%>
+<% if global_admininfo2 and ! global_admininfo2.empty? -%>
+AdminInfo2 = <%= global_admininfo2 %>
+<% end -%>
+<% if global_adminemail and ! global_adminemail.empty? -%>
+AdminEMail = <%= global_adminemail %>
+<% end -%>
+<% if global_ports and ! global_ports.empty? -%>
+Ports = <%= global_ports.join(",") %>
+<% end -%>
+<% if global_listen and ! global_listen.empty? -%>
+Listen = <%= global_listen.join(",") %>
+<% end -%>
+<% if global_motdfile and ! global_motdfile.empty? -%>
+MotdFile = <%= global_motdfile %>
+<% end -%>
+<% if global_motdphrase and ! global_motdphrase.empty? -%>
+MotdPhrase = "<%= global_motdphrase.slice! 256..-1 %>"
+<% end -%>	
+<% if global_serveruid and ! global_serveruid.empty? -%>
+ServerUID = <%= global_serveruid %>
+<% else -%>
+ServerUID = ngircd
+<% end -%>
+<% if global_servergid and ! global_servergid.empty? -%>
+ServerGID = <%= global_servergid %>
+<% else -%>
+ServerGID = ngircd
+<% end -%>
+<% if global_chrootdir and ! global_chrootdir.empty? -%>
+ChrootDir = <%= global_chrootdir %>
+<% end -%>	
+<% if global_pidfile and ! global_pidfile.empty? -%>
+PidFile = <%= global_pidfile %>
+<% else -%>
+PidFile = /var/run/ngircd/ngircd.pid
+<% end -%>
+<% if global_pingtimeout and ! global_pingtimeout.empty? -%>
+PingTimeout = <%= global_pingtimeout %>
+<% end -%>
+<% if global_pongtimeout and ! global_pongtimeout.empty? -%>
+PongTimeout = <%= global_pongtimeout %>
+<% end -%>
+<% if global_connectretry and ! global_connectretry.empty? -%>
+ConnectRetry = <%= global_connectretry %>
+<% end -%>
+<% if global_opercanusemode and ! global.opercanusemode.empty? -%>
+OperCanUseMode <%= global_opercanusemode %>
+<% end -%>
+<% if global_operservermode and ! global_operservermode.empty? -%>
+OperServerMode = <%= global_operservermode %>
+<% end -%>
+<% if global_predefchannelsonly and ! global_predefchannelsonly.empty? -%>
+PredefChannelsOnly = <%= global_predefchannelsonly %>
+<% end -%>
+<% if global_nodns and ! global_nodns.empty? -%>
+NoDNS = <%= global_nodns %>
+<% end -%>
+<% if global_connectipv6 and ! global_connectipv6.empty? -%>
+ConnectIPv6 = <%= global_connectipv6 %>
+<% end -%>
+<% if global_connectipv4 and ! global_connectipv4.empty? -%>
+ConnectIPv4 = <%= global_connectipv4 %>
+<% end -%>
+<% if global_maxconnections and ! global_maxconnections.empty? -%>
+MaxConnections = <%= global_maxconnections %>
+<% end -%>
+<% if global_maxconnectionsip and ! global_maxconnectionsip.empty? -%>
+MaxConnectionsIP = <%= global_maxconnectionsip %>
+<% end -%>
+<% if global_maxjoins and ! global_maxjoins.empty? -%>
+MaxJoins = <%= global_maxjoins %>
+<% end -%>
+<% if global_maxnicklength and ! global_maxnicklength.empty? -%>
+MaxNickLength = <%= global_maxnicklength %>
+<% end -%>
+
+<% if operators and ! operators.empty? -%>
+[Operator]
+<% operators.sort_by {|key, value| key}.each do |key, value| -%>
+Name = <%= value['oper_name'] %>
+Password = <%= value['oper_pass'] %>
+<% if value['oper_mask'] %>
+Mask = <%= value['oper_mask'] %>
+<% end -%>
+<% end -%>
+<% end -%>
+
+<% if servers and ! servers.empty? -%>
+[Server]
+<% servers.sort_by {|key, value| key}.each do |key, value| -%>
+Name = <%= value['server_name'] %>
+Host = <%= value['server_host'] %>
+Bind = <%= value['server_bind'] %>
+Port = <%= value['server_port'] %>
+<% if value['server_mypassword'] -%>
+MyPassword = <%= value['server_mypassword'] %>
+<% end -%>
+<% if value['server_peerpassword'] -%>
+PeerPassword = <%= value['server_peerpassword'] %>
+<% end -%>
+<% if value['server_group'] -%>
+Group = <%= value['server_group'] %>
+<% end -%>
+Passive = <%= value['server_passive'] %>
+<% end -%>
+<% end -%>
+
+<% if channels and ! channels.empty? -%>
+[Channel]
+<% channels.sort_by {|key, value| key}.each do |key, value| -%>
+Name = <%= value['channel_name'] %>
+Topic = <%= value['channel_topic'] %>
+Modes = <%= value['channel_modes'] %>
+<% if value['channel_key'] -%>
+Key = <%= value['channel_key'] %>
+<% end -%>
+<% if value['channel_maxusers'] %>
+MaxUsers = <%= value['channel_maxusers'] %>
+<% end -%>
+<% end -%>
+<% end -%>

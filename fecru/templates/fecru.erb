@@ -1,0 +1,13 @@
+[Unit]
+Description=Fisheye/Crucible
+After=network.target
+ 
+[Service]
+Type=forking
+EnvironmentFile=/etc/sysconfig/fecru
+ExecStart=<%= @fecru_root %>/bin/start.sh
+ExecStop=<%= @fecru_root %>/bin/stop.sh
+User=fecru
+ 
+[Install]
+WantedBy=multi-user.target

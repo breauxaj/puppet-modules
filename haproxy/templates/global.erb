@@ -1,0 +1,109 @@
+global
+<% if global_chroot and ! global_chroot.empty? -%>
+  chroot <%= global_chroot %>
+<% end -%>
+<% if global_daemon and ! global_daemon.empty? -%>
+  global_daemon
+<% end -%>
+<% if global_gid and ! global_gid.empty? -%>
+  gid <%= global_gid %>
+<% end -%>
+<% if global_group and ! global_group.empty? -%>
+  group <%= global_group %>
+<% end -%>
+<% if global_log and ! global_log.empty? -%>
+  log <%= global_log %>
+<% end -%>
+<% if global_log_send_hostname and ! global_log_send_hostname.empty? -%>
+  log-send-hostname <%= global_log_send_hostname %>
+<% end -%>
+<% if global_log_tag and ! global_log_tag.empty? -%>
+  log-tag <%= global_log_tag %>
+<% end -%>
+<% if global_nbproc and ! global_nbproc.empty? -%>
+  nbproc <%= global_nbproc %>
+<% end -%>
+<% if global_pidfile and ! global_pidfile.empty? -%>
+  pidfile <%= global_pidfile %>
+<% end -%>
+<% if global_uid and ! global_uid.empty? -%>
+  uid <%= global_uid %>
+<% end -%>
+<% if global_ulimit_n and ! global_ulimit_n.empty? -%>
+  ulimit-n <%= global_ulimit_n %>
+<% end -%>
+<% if global_user and ! global_user.empty? -%>
+  user <%= global_user %>
+<% end -%>
+<% if global_node and ! global_node.empty? -%>
+  node <%= global_node %>
+<% end -%>
+<% if global_description and ! global_description.empty? -%>
+  description <%= global_description %>
+<% end -%>
+<% if global_stats_socket and ! global_stats_socket.empty? -%>
+  stats socket <%= global_stats_socket %>
+<% end -%>
+<% if global_stats_timeout and ! global_stats_timeout.empty? -%>
+  stats timeout <%= global_stats_timeout %>
+<% end -%>
+<% if global_stats_maxconn and ! global_stats_maxconn.empty? -%>
+  stats maxconn <%= global_stats_maxconn %>
+<% end -%>
+<% if global_maxconn and ! global_maxconn.empty? -%>
+  maxconn <%= global_maxconn %>
+<% end -%>
+<% if global_maxpipes and ! global_maxpipes.empty? -%>
+  maxpipes <%= global_maxpipes %>
+<% end -%>
+<% if global_noepoll and ! global_noepoll.empty? -%>
+  noepoll
+<% end -%>
+<% if global_nokqueue and ! global_nokqueue.empty? -%>
+  nokqueue
+<% end -%>
+<% if global_nopoll and ! global_nopoll.empty? -%>
+  nopoll
+<% end -%>
+<% if global_nosepoll and ! global_nosepoll.empty? -%>
+  nosepoll
+<% end -%>
+<% if global_nosplice and ! global_nosplice.empty? -%>
+  nosplice
+<% end -%>
+<% if global_spread_checks and ! global_spread_checks.empty? -%>
+  spread-checks <%= global_spread_checks %>
+<% end -%>
+<% if global_tune_bufsize and ! global_tune_bufsize.emtpy? -%>
+  tune.bufsize <%= global_tune_bufsize %>
+<% end -%>
+<% if global_tune_chksize and ! global_tune_chksize.empty? -%>
+  tune.chksize <%= global_tune_chksize %>
+<% end -%>
+<% if global_tune_maxaccept and ! global_tune_maxaccept.empty? -%>
+  tune.maxaccept <%= global_tune_maxaccept %>
+<% end -%>
+<% if global_tune_maxpollevents and ! global_tune_maxpollevents.empty? -%>
+  tune.maxpollevents <%= global_tune_maxpollevents %>
+<% end -%>
+<% if global_tune_maxrewrite and ! global_tune_maxrewrite.empty? -%>
+  tune.maxrewrite <%= global_tune_maxrewrite %>
+<% end -%>
+<% if global_tune_rcvbuf_client and ! global_tune_rcvbuf_client.empty? -%>
+  tune.rcvbuf.client <%= global_tune_rcvbuf_client %>
+<% end -%>
+<% if global_tune_rcvbuf_server and ! global_tune_rcvbuf_server.empty? -%>
+  tune.rcvbuf.server <%= global_tune_rcvbuf_server %>
+<% end -%>
+<% if global_tune_sndbuf_client and ! global_tune_sndbuf_client.empty? -%>
+  tune.sndbuf.client <%= global_tune_sndbuf_client %>
+<% end -%>
+<% if global_tune_sndbuf_server and ! global_tune_sndbuf_server.empty? -%>
+  tune.sndbuf.server <%= global_tune_sndbuf_server %>
+<% end -%>
+<% if global_debug and ! global_debug.empty? -%>
+  debug
+<% end -%>
+<% if global_quiet and ! global_quiet.empty? -%>
+  quiet
+<% end -%>

@@ -1,0 +1,17 @@
+<% if userlists and ! userlists.empty? %>
+<% userlists.sort_by {|key, value| key}.each do |key, value| %>
+userlist <%= key %>
+<% if value['group'] and value['group'].kind_of?(Array) and ! value['group'].empty? %>
+<% value['group'].each do |group| %>
+  group <%= group %>
+<% end %>
+<% end %>
+
+<% if value['user'] and value['user'].kind_of?(Array) and ! value['user'].empty? %>
+<% value['user'].each do |user| %>
+  user <%= user %>
+<% end %>
+<% end %>
+
+<% end %>
+<% end %>

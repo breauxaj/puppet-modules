@@ -1,0 +1,444 @@
+<% if backends and ! backends.empty? -%>
+<% backends.sort_by {|key, value| key}.each do |key, value| -%>
+backend <%= key %>
+<% if value['acl'] and value['acl'].kind_of?(Array) and ! value['acl'].empty? -%>
+<% value['acl'].each do |acl| -%>
+  acl <%= acl %>
+<% end -%>
+<% end -%>
+<% if value['appsession'] and ! value['appsession'].empty? -%>
+  appsession <%= value['appsession'] %>
+<% end -%>
+<% if value['balance'] and ! value['balance'].empty? -%>
+  balance <%= value['balance'] %>
+<% end -%>
+<% if value['bind_process'] and ! value['bind_process'].empty? -%>
+  bind-process <%= value['bind_process'] %>
+<% end -%>
+<% if value['block'] and value['block'].kind_of?(Array) and ! value['block'].empty? -%>
+<% value['block'].each do |block| -%>
+  block <%= block %>
+<% end -%>
+<% end -%>
+<% if value['cookie'] and value['cookie'].kind_of?(Array) and ! value['cookie'].empty? -%>
+<% value['cookie'].each do |cookie| -%>
+  cookie <%= cookie %>
+<% end -%>
+<% end -%>
+<% if value['default_server'] and ! value['default_server'].empty? -%>
+  default-server <%= value['default_server'] %>
+<% end -%>
+<% if value['disabled'] and ! value['disabled'].empty? -%>
+  disabled
+<% end -%>
+<% if value['dispatch'] and ! value['dispatch'].empty? -%>
+  dispatch <%= value['dispatch'] %>
+<% end -%>
+<% if value['enabled'] and ! value['enabled'].empty? -%>
+  enabled
+<% end -%>
+<% if value['errorfile'] and value['errorfile'].kind_of?(Array) and ! value['errorfile'].empty? -%>
+<% value['errorfile'].each do |errorfile| -%>
+  errorfile <%= errorfile %>
+<% end -%>
+<% end -%>
+<% if value['errorloc'] and value['errorloc'].kind_of?(Array) and ! value['errorloc'].empty? -%>
+<% value['errorloc'].each do |errorloc| -%>
+  errorloc <%= errorloc %>
+<% end -%>
+<% end -%>
+<% if value['errorloc302'] and value['errorloc302'].kind_of?(Array) and ! value['errorloc302'].empty? -%>
+<% value['errorloc302'].each do |errorloc302| -%>
+  errorloc302 <%= errorloc302 %>
+<% end -%>
+<% end -%>
+<% if value['errorloc303'] and value['errorloc303'].kind_of?(Array) and ! value['errorloc303'].empty? -%>
+<% value['errorloc303'].each do |errorloc303| -%>
+  errorloc303 <%= errorloc303 %>
+<% end -%>
+<% end -%>
+<% if value['force_persist'] and ! value['force_persist'].empty? -%>
+  force-persist <%= value['force_persist'] %>
+<% end -%>
+<% if value['fullconn'] and ! value['fullconn'].empty? -%>
+  fullconn <%= value['fullconn'] %>
+<% end -%>
+<% if value['grace'] and ! value['grace'].empty? -%>
+  grace <%= value['grace'] %>
+<% end -%>
+<% if value['hash-type'] and ! value['hash-type'].empty? -%>
+  hash-type <%= value['hash-type'] %>
+<% end -%>
+<% if value['http_check_disable_on_404'] and ! value['http_check_disable_on_404'].empty? -%>
+  http-check disable-on-404
+<% end -%>
+<% if value['http_check_expect'] and ! value['http_check_expect'].empty? -%>
+  http-check expect <%= value['http_check_expect'] %>
+<% end -%>
+<% if value['http_check_send_state'] and ! value['http_check_send_state'].empty? -%>
+  http-check send-state
+<% end -%>
+<% if value['http_request'] and value['http_request'].kind_of?(Array) and ! value['http_request'].empty? -%>
+<% value['http_request'].each do |http_request| -%>
+  http-request <%= http_request %>
+<% end -%>
+<% end -%>
+<% if value['id'] and ! value['id'].empty? -%>
+  id <%= value['id'] %>
+<% end -%>
+<% if value['ignore_persist'] and value['ignore_persist'].kind_of?(Array) and ! value['ignore_persist'].empty? -%>
+<% value['ignore_persist'].each do |ignore_persist| -%>
+  ignore-persist <%= ignore_persist %>
+<% end -%>
+<% end -%>
+<% if value['log'] and ! value['log'].empty? -%>
+  log <%= value['log'] %>
+<% end -%>
+<% if value['mode'] and ! value['mode'].empty? -%>
+  mode <%= value['mode'] %>
+<% end -%>
+<% if value['option_abortonclose'] and ! value['option_abortonclose'].empty? -%>
+<% if value['option_abortonclose'].downcase.match('no') -%>
+  no option abortonclose
+<% else -%>
+  option abortonclose
+<% end -%>
+<% end -%>
+<% if value['option_accept_invalid_http_response'] and ! value['option_accept_invalid_http_response'].empty? -%>
+<% if value['option_accept_invalid_http_response'].downcase.match('no') -%>
+  no option accept-invalid-http-response
+<% else %>
+  option accept-invalid-http-response
+<% end -%>
+<% end -%>
+<% if value['option_allbackups'] and ! value['option_allbackups'].empty? -%>
+<% if value['option_allbackups'].downcase.match('no') -%>
+  no option allbackups
+<% else -%>
+  option allbackups
+<% end -%>
+<% end -%>
+<% if value['option_checkcache'] and ! value['option_checkcache'].empty? -%>
+<% if value['option_checkcache'].downcase.match('no') -%>
+  no option checkcache
+<% else -%>
+  option checkcache
+<% end -%>
+<% end -%>
+<% if value['option_forceclose'] and ! value['option_forceclose'].empty? -%>
+<% if value['option_forceclose'].downcase.match('no') -%>
+  no option forceclose
+<% else -%>
+  option forceclose
+<% end -%>
+<% end -%>
+<% if value['option_forwardfor'] and ! value['option_forwardfor'].empty? -%>
+  option forwardfor <%= value['option_forwardfor'] %>
+<% end -%>
+<% if value['option_http_no_delay'] and ! value['option_http_no_delay'].empty? -%>
+<% if value['option_http_no_delay'].downcase.match('no') -%>
+  no option http-no-delay
+<% else -%>
+  option http-no-delay
+<% end -%>
+<% end -%>
+<% if value['option_http_pretend_keepalive'] and ! value['option_http_pretend_keepalive'].empty? -%>
+<% if value['option_http_pretend_keepalive'].downcase.match('no') -%>
+  no option http-pretend-keepalive
+<% else -%>
+  option http-pretend-keepalive
+<% end -%>
+<% end -%>
+<% if value['option_http_server_close'] and ! value['option_http_server_close'].empty? -%>
+<% if value['option_http_server_close'].downcase.match('no') -%>
+  no option http-server-close
+<% else -%>
+  option http-server-close
+<% end -%>
+<% end -%>
+<% if value['option_httpchk'] and ! value['option_httpchk'].empty? -%>
+  option httpchk <%= value['option_httpchk'] %>
+<% end -%>
+<% if value['option_httpclose'] and ! value['option_httpclose'].empty? -%>
+<% if value['option_httpclose'].downcase.match('no') -%>
+  no option httpclose
+<% else -%>
+  option httpclose
+<% end -%>
+<% end -%>
+<% if value['option_httplog'] and ! value['option_httplog'].empty? -%>
+  option httplog
+<% end -%>
+<% if value['option_http_proxy'] and ! value['option_http_proxy'].empty? -%>
+<% if value['option_http_proxy'].downcase.match('no') -%>
+  no option http_proxy
+<% else -%>
+  option http_proxy
+<% end -%>
+<% end -%>
+<% if value['option_independent_streams'] and ! value['option_independent_streams'].empty? -%>
+<% if value['option_independent_streams'].downcase.match('no') -%>
+  no option independent-streams
+<% else -%>
+  option independent-streams
+<% end -%>
+<% end -%>
+<% if value['option_ldap_check'] and ! value['option_ldap_check'].empty? -%>
+  option ldap-check
+<% end -%>
+<% if value['option_log_health_checks'] and ! value['option_log_health_checks'].empty? -%>
+<% if value['option_log_health_checks'].downcase.match('no') -%>
+  no option log-health-checks
+<% else -%>
+  option log-health-checks
+<% end -%>
+<% end -%>
+<% if value['option_mysql_check'] and ! value['option_mysql_check'].empty? -%>
+  option mysql-check user <%= value['option_mysql_check'] %>
+<% end -%>
+<% if value['option_nolinger'] and ! value['option_nolinger'].empty? -%>
+<% if value['option_nolinger'].downcase.match('no') -%>
+  no option nolinger
+<% else -%>
+  option nolinger
+<% end -%>
+<% end -%>
+<% if value['option_originalto'] and ! value['option_originalto'].empty? -%>
+  option originalto <%= value['option_originalto'] %>
+<% end -%>
+<% if value['option_persist'] and ! value['option_persist'].empty? -%>
+<% if value['option_persist'].downcase.match('no') -%>
+  no option persist
+<% else -%>
+  option persist
+<% end -%>
+<% end -%>
+<% if value['option_redispatch'] and ! value['option_redispatch'].empty? -%>
+<% if value['option_redispatch'].downcase.match('no') -%>
+  no option redispatch
+<% else -%>
+  option redispatch
+<% end -%>
+<% end -%>
+<% if value['option_smtpchk'] and ! value['option_smtpchk'].empty? -%>
+  option smtpchk <%= value['option_smtpchk'] %>
+<% end -%>
+<% if value['option_splice_auto'] and ! value['option_splice_auto'].empty? -%>
+<% if value['option_splice_auto'].downcase.match('no') -%>
+  no option splice-auto
+<% else -%>
+  option splice-auto
+<% end -%>
+<% end -%>
+<% if value['option_splice_request'] and ! value['option_splice_request'].empty? -%>
+<% if value['option_splice_request'].downcase.match('no') -%>
+  no option splice-request
+<% else -%>
+  option splice-request
+<% end -%>
+<% end -%>
+<% if value['option_splice_response'] and ! value['option_splice_response'].empty? -%>
+<% if value['option_splice_response'].downcase.match('no') -%>
+  no option splice-response
+<% else -%>
+  option splice-response
+<% end -%>
+<% end -%>
+<% if value['option_srvtcpka'] and ! value['option_srvtcpka'].empty? -%>
+<% if value['option_srvtcpka'].downcase.match('no') -%>
+  no option srvtcpka
+<% else -%>
+  option srvtcpka
+<% end -%>
+<% end -%>
+<% if value['option_ssl_hello_chk'] and ! value['option_ssl_hello_chk'].empty? -%>
+  option ssl-hello-chk
+<% end -%>
+<% if value['option_tcp_smart_connect'] and ! value['option_tcp_smart_connect'].empty? -%>
+<% if value['option_tcp_smart_connect'].downcase.match('no') -%>
+  no option tcp-smart-connect
+<% else -%>
+  option tcp-smart-connect
+<% end -%>
+<% end -%>
+<% if value['option_tcpka'] and ! value['option_tcpka'].empty? -%>
+  option tcpka
+<% end -%>
+<% if value['option_tcplog'] and ! value['option_tcplog'].empty? -%>
+  option tcplog
+<% end -%>
+<% if value['option_transparent'] and ! value['option_transparent'].empty? -%>
+<% if value['option_transparent'].downcase.match('no') -%>
+  no option transparent
+<% else -%>
+  option transparent
+<% end -%>
+<% end -%>
+<% if value['persist_rdp_cookie'] and ! value['persist_rdp_cookie'].empty? -%>
+  persist rdp-cookie
+<% end -%>
+<% if value['redirect'] and value['redirect'].kind_of?(Array) and ! value['redirect'].empty? -%>
+<% value['redirect'].each do |redirect| -%>
+  redirect <%= redirect %>
+<% end -%>
+<% end -%>
+<% if value['reqadd'] and value['reqadd'].kind_of?(Array) and ! value['reqadd'].empty? -%>
+<% value['reqadd'].each do |reqadd| -%>
+  reqadd <%= reqadd %>
+<% end -%>
+<% end -%>
+<% if value['reqallow'] and value['reqallow'].kind_of?(Array) and ! value['reqallow'].empty? -%>
+<% value['reqallow'].each do |reqallow| -%>
+  reqallow <%= reqallow %>
+<% end -%>
+<% end -%>
+<% if value['reqdel'] and value['reqdel'].kind_of?(Array) and ! value['reqdel'].empty? -%>
+<% value['reqdel'].each do |reqdel| -%>
+  reqdel <%= reqdel %>
+<% end -%>
+<% end -%>
+<% if value['reqdeny'] and value['reqdeny'].kind_of?(Array) and ! value['reqdeny'].empty? -%>
+<% value['reqdeny'].each do |reqdeny| -%>
+  reqdeny <%= reqdeny %>
+<% end -%>
+<% end -%>
+<% if value['reqpass'] and value['reqpass'].kind_of?(Array) and ! value['reqpass'].empty? -%>
+<% value['reqpass'].each do |reqpass| -%>
+  reqpass <%= reqpass %>
+<% end -%>
+<% end -%>
+<% if value['reqrep'] and value['reqrep'].kind_of?(Array) and ! value['reqrep'].empty? -%>
+<% value['reqrep'].each do |reqrep| -%>
+  reqrep <%= reqrep %>
+<% end -%>
+<% end -%>
+<% if value['reqtarpit'] and value['reqtarpit'].kind_of?(Array) and ! value['reqtarpit'].empty? -%>
+<% value['reqtarpit'].each do |reqtarpit| -%>
+  reqtarpit <%= reqtarpit %>
+<% end -%>
+<% end -%>
+<% if value['reqiallow'] and value['reqiallow'].kind_of?(Array) and ! value['reqiallow'].empty? -%>
+<% value['reqiallow'].each do |reqiallow| -%>
+  reqiallow <%= reqiallow %>
+<% end -%>
+<% end -%>
+<% if value['reqidel'] and value['reqidel'].kind_of?(Array) and ! value['reqidel'].empty? -%>
+<% value['reqidel'].each do |reqidel| -%>
+  reqidel <%= reqidel %>
+<% end -%>
+<% end -%>
+<% if value['reqideny'] and value['reqideny'].kind_of?(Array) and ! value['reqideny'].empty? -%>
+<% value['reqideny'].each do |reqideny| -%>
+  reqideny <%= reqideny %>
+<% end -%>
+<% end -%>
+<% if value['reqipass'] and value['reqipass'].kind_of?(Array) and ! value['reqipass'].empty? -%>
+<% value['reqipass'].each do |reqipass| -%>
+  reqipass <%= reqipass %>
+<% end -%>
+<% end -%>
+<% if value['reqirep'] and value['reqirep'].kind_of?(Array) and ! value['reqirep'].empty? -%>
+<% value['reqirep'].each do |reqirep| -%>
+  reqirep <%= reqirep %>
+<% end -%>
+<% end -%>
+<% if value['reqitarpit'] and value['reqitarpit'].kind_of?(Array) and ! value['reqitarpit'].empty? -%>
+<% value['reqitarpit'].each do |reqitarpit| -%>
+  reqitarpit <%= reqitarpit %>
+<% end -%>
+<% end -%>
+<% if value['retries'] and ! value['retries'].empty? -%>
+  retries <%= value['retries'] %>
+<% end -%>
+<% if value['rspadd'] and value['rspadd'].kind_of?(Array) and ! value['rspadd'].empty? -%>
+<% value['rspadd'].each do |rspadd| -%>
+  rspadd <%= rspadd %>
+<% end -%>
+<% end -%>
+<% if value['rspdel'] and value['rspdel'].kind_of?(Array) and ! value['rspdel'].empty? -%>
+<% value['rspdel'].each do |rspdel| -%>
+  rspdel <%= rspdel %>
+<% end -%>
+<% end -%>
+<% if value['rspdeny'] and value['rspdeny'].kind_of?(Array) and ! value['rspdeny'].empty? -%>
+<% value['rspdeny'].each do |rspdeny| -%>
+  rspdeny <%= rspdeny %>
+<% end -%>
+<% end -%>
+<% if value['rsprep'] and value['rsprep'].kind_of?(Array) and ! value['rsprep'].empty? -%>
+<% value['rsprep'].each do |rsprep| -%>
+  rsprep <%= rsprep %>
+<% end -%>
+<% end -%>
+<% if value['rspidel'] and value['rspidel'].kind_of?(Array) and ! value['rspidel'].empty? -%>
+<% value['rspidel'].each do |rspidel| -%>
+  rspidel <%= rspidel %>
+<% end -%>
+<% end -%>
+<% if value['rspideny'] and value['rspideny'].kind_of?(Array) and ! value['rspideny'].empty? -%>
+<% value['rspideny'].each do |rspideny| -%>
+  rspideny <%= rspideny %>
+<% end -%>
+<% end -%>
+<% if value['rspirep'] and value['rspirep'].kind_of?(Array) and ! value['rspirep'].empty? -%>
+<% value['rspirep'].each do |rspirep| -%>
+  rspirep <%= rspirep %>
+<% end -%>
+<% end -%>
+<% if value['server'] and value['server'].kind_of?(Array) and ! value['server'].empty? -%>
+<% value['server'].each do |server| -%>
+  server <%= server %>
+<% end -%>
+<% end -%>
+<% if value['source'] and ! value['source'].empty? -%>
+  source <%= value['source'] %>
+<% end -%>
+
+
+
+<% end -%>
+<% end -%>
+
+
+
+
+
+
+
+
+stats admin
+stats auth
+stats enable
+stats hide-version
+stats http-request
+stats realm
+stats refresh
+stats scope
+stats show-desc
+stats show-legends
+stats show-node
+stats uri
+
+stick match
+stick on
+stick store-request
+stick store-response
+stick-table
+
+tcp-request content
+tcp-request inspect-delay
+tcp-response content
+tcp-response inspect-delay
+timeout check
+
+timeout connect
+
+timeout http-keep-alive
+timeout http-request
+timeout queue
+timeout server
+
+timeout tarpit
+timeout tunnel
+
+use-server

@@ -1,0 +1,13 @@
+# MANAGED BY PUPPET!
+<% if runas and ! runas.empty?  -%>
+RUNAS="<%= runas %>"
+<% else -%>
+RUNAS="tomcat"
+<% end -%>
+<% if catalina_home and ! catalina_home.empty?  -%>
+CATALINA_HOME="<%= catalina_home %>"
+CATALINA_PID="<%= catalina_home %>/logs/stash.pid"
+<% else -%>
+CATALINA_HOME="/usr/local/stash"
+CATALINA_PID="/usr/local/stash/logs/stash.pid"
+<% end -%>

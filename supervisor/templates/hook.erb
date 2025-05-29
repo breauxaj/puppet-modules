@@ -1,0 +1,10 @@
+<% if hook and ! hook.empty? -%>
+[program:<%= hook %>]
+command=<%= command %>
+autostart=<%= autostart %>
+autorestart=<%= autorestart %>
+environment=<%= environment %>
+stderr_logfile=<%= stderr_logfile %>
+stdout_logfile=<%= stdout_logfile %>
+user=<%= user %>
+<% end -%>

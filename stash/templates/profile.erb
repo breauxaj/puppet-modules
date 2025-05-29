@@ -1,0 +1,6 @@
+# MANAGED BY PUPPET!
+<% if catalina_home and ! catalina_home.empty?  -%>
+export TOMCAT_HOME="<%= catalina_home %>"
+export CATALINA_HOME=$TOMCAT_HOME
+export CATALINA_PID="<%= catalina_home %>/logs/stash.pid"
+<% end -%>

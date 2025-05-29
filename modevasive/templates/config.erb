@@ -1,0 +1,68 @@
+# MANAGED BY PUPPET!
+<% if @evasive_on_httpd_version == '2.2' -%>
+LoadModule evasive20_module modules/mod_evasive20.so
+<% else -%>
+LoadModule evasive20_module modules/mod_evasive24.so
+<% end -%>
+
+<% if @evasive_on_httpd_version == '2.2' -%>
+<IfModule mod_evasive20.c>
+<% else -%>
+<IfModule mod_evasive24.c>
+<% end -%>
+<% if @doshashtablesize and ! @doshashtablesize.empty? -%>
+  DOSHashTableSize    <%= @doshashtablesize %>
+<% else -%>
+  DOSHashTableSize    3097
+<% end -%>
+<% if @dospagecount and ! @dospagecount.empty? -%>
+  DOSPageCount        <%= @dospagecount %>
+<% else -%>
+  DOSPageCount        2
+<% end -%>
+<% if @dossitecount and ! @dossitecount.empty? -%>
+  DOSSiteCount        <%= @dossitecount %>
+<% else -%>
+  DOSSiteCount        50
+<% end -%>
+<% if @dospageinterval and ! @dospageinterval.empty? -%>
+  DOSPageInterval     <%= @dospageinterval %>
+<% else -%>
+  DOSPageInterval     1
+<% end -%>
+<% if @dossiteinterval and ! @dossiteinterval.empty? -%>
+  DOSSiteInterval     <%= @dossiteinterval %>
+<% else -%>
+  DOSSiteInterval     1
+<% end -%>
+<% if @dosblockingperiod and ! @dosblockingperiod.empty? -%>
+  DOSBlockingPeriod   <%= @dosblockingperiod %>
+<% else -%>
+  DOSBlockingPeriod   10
+<% end -%>
+<% if @dosemailnotify and ! @dosemailnotify.empty? -%>
+  DOSEmailNotify      <%= @dosemailnotify %>
+<% else -%>
+  #DOSEmailNotify      you@yourdomain.com
+<% end -%>
+<% if @dossystemcommand and ! @dossystemcommand.empty? -%>
+  DOSSystemCommand    "<%= @dossystemcommand %>"
+<% else -%>
+  #DOSSystemCommand    "su - someuser -c '/sbin/... %s ...'"
+<% end -%>
+<% if @doslogdir and ! @doslogdir.empty? -%>
+  DOSLogDir           "<%= @doslogdir %>"
+<% else -%>
+  #DOSLogDir           "/var/log/httpd"
+<% end -%>
+<% if @doswhitelist and ! @doswhitelist.empty? -%>
+<% if @doswhitelist.kind_of?(Array) -%>
+<% @doswhitelist.each do |dwl| -%>
+  DOSWhitelist        <%= dwl %>
+<% end -%>
+<% end -%>
+<% else -%>
+  #DOSWhitelist   127.0.0.1
+  #DOSWhitelist   192.168.0.*
+<% end -%>
+</IfModule>

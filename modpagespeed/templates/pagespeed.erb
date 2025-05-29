@@ -1,0 +1,173 @@
+# MANAGED BY PUPPET!
+<IfModule !mod_version.c>
+  LoadModule version_module modules/mod_version.so
+</IfModule>
+<IfVersion < 2.4>
+  LoadModule pagespeed_module modules/mod_pagespeed.so
+</IfVersion>
+<IfModule !mod_deflate.c>
+ LoadModule deflate_module modules/mod_deflate.so
+</IfModule>
+
+<IfModule pagespeed_module>
+<% if modpagespeed and ! modpagespeed.empty? -%>
+  ModPagespeed <%= modpagespeed %>
+<% else -%>
+  ModPagespeed on
+<% end -%>
+<% if inheritvhostconfig and ! inheritvhostconfig.empty? -%>
+  ModPagespeedInheritVHostConfig <%= inheritvhostconfig %>
+<% else -%>
+  ModPagespeedInheritVHostConfig on
+<% end -%>
+<% if outputfilter_html and ! outputfilter_html.empty? -%>
+  AddOutputFilterByType MOD_PAGESPEED_OUTPUT_FILTER text/html
+<% end -%>
+<% if outputfilter_xml and ! outputfilter_xml.empty? -%>
+  AddOutputFilterByType MOD_PAGESPEED_OUTPUT_FILTER application/xhtml+xml
+<% end -%>
+<% if filecachepath and ! filecachepath.empty? -%>
+  ModPagespeedFileCachePath "<%= filecachepath %>"
+<% else -%>
+  ModPagespeedFileCachePath "/var/cache/mod_pagespeed/"
+<% end -%>
+<% if logdir and ! logdir.empty? -%>
+  ModPagespeedLogDir "<%= logdir -%>"
+<% else -%>
+  ModPagespeedLogDir "/var/log/pagespeed"
+<% end -%>
+<% if memcachedservers and ! memcachedservers.empty? -%>
+  ModPagespeedMemcachedServers <%= memcachedservers %>
+<% end -%>
+<% if metadatacache and ! metadatacache.empty? -%>
+  ModPagespeedCreateSharedMemoryMetadataCache "<%= metadatacache %>" 51200
+<% end -%>
+<% if rewritelevel and ! rewritelevel.empty? -%>
+  ModPagespeedRewriteLevel <%= rewritelevel %>
+<% end -%>
+<% if disablefilters and ! disablefilters.empty? -%>
+  ModPagespeedDisableFilters <%= disablefilters %>
+<% end -%>
+<% if enablefilters and ! enablefilters.empty? -%>
+  ModPagespeedEnableFilters <%= enablefilters %>
+<% end -%>
+<% if forbidfilters and ! forbidfilters.empty? -%>
+  ModPagespeedForbidFilters <%= forbidfilters %>
+<% end -%>
+<% if rewritedeadlineperflushms and ! rewritedeadlineperflushms.empty? -%>
+  ModPagespeedRewriteDeadlinePerFlushMs <%= rewritedeadlineperflushms %>
+<% end -%>
+<% if domain and ! domain.emtpy? -%>
+  ModPagespeedDomain <%= domain %>
+<% end -%>
+<% if filecachesizekb and ! filecachesizekb.empty? -%>
+  ModPagespeedFileCacheSizeKb <%= filecachesizekb %>
+<% end -%>
+<% if filecachecleanintervalms and ! filecachecleanintervalms.empty? -%>
+  ModPagespeedFileCacheCleanIntervalMs <%= filecachecleanintervalms %>
+<% end -%>
+<% if lrucachekbperprocess and ! lrucachekbperprocess.empty? -%>
+  ModPagespeedLRUCacheKbPerProcess <%= lrucachekbperprocess %>
+<% end -%>
+<% if lrucachebytelimit and ! lrucachebytelimit.empty? -%>
+  ModPagespeedLRUCacheByteLimit <%= lrucachebytelimit %>
+<% end -%>
+<% if cssflattenmaxbytes and ! cssflattenmaxbytes.empty? -%>
+  ModPagespeedCssFlattenMaxBytes <%= cssflattenmaxbytes %>
+<% end -%>
+<% if cssinlinemaxbytes and ! cssinlinemaxbytes.empty? -%>
+  ModPagespeedCssInlineMaxBytes <% cssinlinemaxbytes %>
+<% end -%>
+<% if cssimageinlinemaxbytes and ! cssimageinlinemaxbytes.empty? -%>
+  ModPagespeedCssImageInlineMaxBytes <%= cssimageinlinemaxbytes %>
+<% end -%>
+<% if imageinlinemaxbytes and ! imageinlinemaxbytes.empty? -%>
+  ModPagespeedImageInlineMaxBytes <%= imageinlinemaxbytes %>
+<% end -%>
+<% if jsinlinemaxbytes and ! jsinlinemaxbytes.empty? -%>
+  ModPagespeedJsInlineMaxBytes <%= jsinlinemaxbytes %>
+<% end -%>
+<% if cssoutlineminbytes and ! cssoutlineminbytes.empty? -%>
+  ModPagespeedCssOutlineMinBytes <%= cssoutlineminbytes %>
+<% end -%>
+<% if jsoutlineminbytes and ! jsoutlineminbytes.empty? -%>
+  ModPagespeedJsOutlineMinBytes <%= jsoutlineminbytes %>
+<% end -%>
+<% if filecacheinodelimit and ! filecacheinodelimit.empty? -%>
+  ModPagespeedFileCacheInodeLimit <%= filecacheinodelimit %>
+<% else -%>
+  ModPagespeedFileCacheInodeLimit 500000
+<% end -%>
+<% if imagemaxrewritesatonce and ! imagemaxrewritesatonce.empty? -%>
+  ModPagespeedImageMaxRewritesAtOnce <%= imagemaxrewritesatonce %>
+<% end -%>
+<% if numrewritethreads and ! numrewritethreads.empty? -%>
+  ModPagespeedNumRewriteThreads <%= numrewritethreads %>
+<% end -%>
+<% if numexpensiverewritethreads and ! numexpensiverewritethreads.empty? -%>
+  ModPagespeedNumExpensiveRewriteThreads <%= numexpensiverewritethreads %>
+<% end -%>
+<% if rewriterandomdroppercentage and ! rewriterandomdroppercentage.empty? -%>
+  ModPagespeedRewriteRandomDropPercentage <%= rewriterandomdroppercentage %>
+<% end -%>
+<% if jspreserveurls and ! jspreserveurls.empty? -%>
+  ModPagespeedJsPreserveURLs on
+<% end -%>
+<% if imagepreserveurls and ! imagepreserveurls.empty? -%>
+  ModPagespeedImagePreserveURLs on
+<% end -%>
+<% if csspreserveurls and ! csspreserveurls.empty? -%>
+  ModPagespeedCssPreserveURLs on
+<% end -%>
+<% if imagerecompressionquality and ! imagerecompressionquality.empty? -%>
+  ModPagespeedImageRecompressionQuality <%= imagerecompressionquality %>
+<% end -%>
+<% if jpegrecompressionquality and ! jpegrecompressionquality.empty? -%>
+  ModPagespeedJpegRecompressionQuality <%= jpegrecompressionquality %>
+<% end -%>
+<% if jpegrecompressionqualityforsmallscreens and ! jpegrecompressionqualityforsmallscreens.empty? -%>
+  ModPagespeedJpegRecompressionQualityForSmallScreens <%= jpegrecompressionqualityforsmallscreens %>
+<% end -%>
+<% if imagewebprecompressionquality and ! imagewebprecompressionquality.empty? -%>
+  ModPagespeedImageWebpRecompressionQuality <%= imagewebprecompressionquality %>
+<% end -%>
+<% if imagewebprecompressionqualityforsmallscreens and ! imagewebprecompressionqualityforsmallscreens.empty? -%>
+  ModPagespeedImageWebpRecompressionQualityForSmallScreens <%= imagewebprecompressionqualityforsmallscreens %>
+<% end -%>
+<% if imagewebptimeoutms and ! imagewebptimeoutms.empty? -%>
+  ModPagespeedImageWebpTimeoutMs <%= imagewebptimeoutms %>
+<% end -%>
+<% if imagelimitoptimizedpercent and ! imagelimitoptimizedpercent.empty? -%>
+  ModPagespeedImageLimitOptimizedPercent <%= imagelimitoptimizedpercent %>
+<% end -%>
+<% if imagelimitresizeareapercent and ! imagelimitresizeareapercent.empty? -%>
+  ModPagespeedImageLimitResizeAreaPercent <%= imagelimitresizeareapercent %>
+<% end -%>
+<% if maxinlinedpreviewimagesindex and ! maxinlinedpreviewimagesindex.empty? -%>
+  ModPagespeedMaxInlinedPreviewImagesIndex <%= maxinlinedpreviewimagesindex %>
+<% end -%>
+<% if minimagesizelowresolutionbytes and ! minimagesizelowresolutionbytes.empty? -%>
+ModPagespeedMinImageSizeLowResolutionBytes <%= minimagesizelowresolutionbytes %>
+<% end -%>
+<% if maxsegmentlength and ! maxsegmentlength.empty? -%>
+  ModPagespeedMaxSegmentLength <%= maxsegmentlength %>
+<% end -%>
+<% if combineacrosspaths and ! combineacrosspaths.empty? -%>
+  ModPagespeedCombineAcrossPaths <%= combineacrosspaths %>
+<% end -%>
+<% if avoidrenamingintrospectivejavascript and ! avoidrenamingintrospectivejavascript.empty? -%>
+  ModPagespeedAvoidRenamingIntrospectiveJavascript <%= avoidrenamingintrospectivejavascript %>
+<% end -%>
+<% if library and library.kind_of?(Array) and ! library.empty? -%>
+<% library.each do |li| -%>
+  ModPagespeedLibrary <%= li %>
+<% end -%>
+<% end -%>
+<% if loadfromfile and loadfromfile.kind_of?(Array) and ! loadfromfile.empty? -%>
+<% loadfromfile.flatten.compact.each do |lff| -%>
+  ModPagespeedLoadFromFile "<%= lff['url'] %>" "<%= lff['path'] %>"
+<% end -%>
+<% end -%>
+<% if reportunloadtime and ! reportunloadtime.empty? -%>
+  ModPagespeedReportUnloadTime <%= reportunloadtime %>
+<% end -%>

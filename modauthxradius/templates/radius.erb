@@ -1,0 +1,16 @@
+# MANAGED BY PUPPET!
+<% if @radius_on_httpd_version == '2.2' %>
+LoadModule auth_xradius_module modules/mod_auth_xradius.so
+
+<% if @cachetype and ! @cachetype.empty? -%>
+AuthXRadiusCache <%= @cachetype %>
+<% else -%>
+AuthXRadiusCache none -
+<% end -%>
+
+<% if @cachetimeout and ! @cachetimeout.empty? -%>
+AuthXRadiusCacheTimeout <% @cachetimeout %>
+<% else -%>
+AuthXRadiusCacheTimeout 300
+<% end -%>
+<% end -%>

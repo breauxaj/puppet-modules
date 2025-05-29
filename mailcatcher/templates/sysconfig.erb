@@ -1,0 +1,21 @@
+# MANAGED BY PUPPET!
+<% if smtp_ip and ! smtp_ip.empty? -%>
+SMTP_IP = <%= smtp_ip %>
+<% else -%>
+SMTP_IP = '127.0.0.1'
+<% end -%>
+<% if smtp_port and ! smtp_port.empty? -%>
+SMTP_PORT = <%= smtp_port %>
+<% else -%>
+SMTP_PORT = '1025'
+<% end -%>
+<% if http_ip and ! http_ip.empty? and ip.empty? -%>
+HTTP_IP = <%= http_ip %>
+<% else -%>
+HTTP_IP = '127.0.0.1'
+<% end -%>
+<% if http_port and ! http_port.empty? -%>
+HTTP_PORT = <%= http_port %>
+<% else -%>
+HTTP_PORT = '1080'
+<% end -%>

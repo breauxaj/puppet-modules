@@ -1,0 +1,17 @@
+# MANAGED BY PUPPET!
+<% if @security_on_httpd_version == '2.2' -%>
+LoadModule security2_module modules/mod_security2.so
+<IfModule !mod_unique_id.c>
+LoadModule unique_id_module modules/mod_unique_id.so
+</IfModule>
+<% end -%>
+
+<IfModule mod_security2.c>
+<% if @security_on_httpd_version == '2.2' -%>
+Include modsecurity.d/*.conf
+Include modsecurity.d/activated_rules/*.conf
+<% else -%>
+IncludeOptional modsecurity.d/*.conf
+IncludeOptional modsecurity.d/activated_rules/*.conf
+<% end -%>
+</IfModule>

@@ -1,0 +1,36 @@
+<% if @ssl_on_httpd_version == '2.2' -%>
+LoadModule ssl_module modules/mod_ssl.so
+<% end -%>
+
+<IfModule mod_ssl.c>
+<% if @ssl_on_httpd_version == '2.2' -%>
+SSLPassPhraseDialog    builtin
+<% else -%>
+SSLPassPhraseDialog    exec:/usr/libexec/httpd-ssl-pass-dialog
+<% end -%>
+<% if @ssl_on_httpd_version == '2.2' -%>
+SSLSessionCache        shmcb:/var/cache/mod_ssl/scache(512000)
+<% else -%>
+SSLSessionCache        shmcb:/run/httpd/sslcache(512000)
+<% end -%>
+SSLSessionCacheTimeout 300
+
+<% if @ssl_on_httpd_version == '2.2' -%>
+SSLMutex default
+<% end -%>
+
+SSLRandomSeed startup file:/dev/urandom  256
+SSLRandomSeed connect builtin
+
+SSLCryptoDevice builtin
+
+<IfModule mod_headers.c>
+Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
+Header always set X-Frame-Options DENY
+Header always set X-Content-Type-Options nosniff
+</IfModule>
+
+SSLProtocol All -SSLv2 -SSLv3
+SSLHonorCipherOrder on
+SSLCipherSuite "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA !RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS"
+</IfModule>

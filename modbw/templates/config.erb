@@ -1,0 +1,20 @@
+<% if @bw_on_httpd_version == '2.2' -%>
+LoadModule bw_module modules/mod_bw.so
+
+<IfModule mod_bw.c>
+BandwidthModule On
+ForceBandWidthModule On
+
+<% if @origin and ! @origin.empty?  -%>
+<% if @origin.kind_of?(Array) -%>
+<% @origin.each do |o| -%>
+BandWidth <%= o %> 8192
+MaxConnection <%= o %> 1
+<% end -%>
+<% else -%>
+BandWidth <%= @origin %> 8192
+MaxConnection <%= @origin %> 1
+<% end -%>
+<% end -%>
+</IfModule>
+<% end -%>
